@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const  path = require('path')
+var cors = require('cors')
 
+app.use(cors())
 const db = require('./db')
 app.use(express.json());
 

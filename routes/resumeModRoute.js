@@ -16,7 +16,7 @@ router.patch('/update-resume/:id', async (req, res) => {
     try {
         //req.params.id is _id of the resume data
         const id = req.params.id
-        const { field, data, type } = req.body
+        const { field, data, type , docId } = req.body
         if (field == 'profile') {
             console.log(data)
             const resumeUpdate = await ResumeProfileDB.findByIdAndUpdate({ _id: id }, {
@@ -39,14 +39,43 @@ router.patch('/update-resume/:id', async (req, res) => {
                 res.json({ Success: "Data updated", data: resumeUpdate })
             }
             else{
-                //Some code to update nested data : id of the array element will be in data._id
+                const resumeUpdate = await ResumeProfileDB.findOneAndUpdate({ _id: id }, {
+                    $set: {
+                        "education.$[s]": data,
+                    },
+                },
+                    {
+                        arrayFilters: [{ "s._id": docId }],
+                        returnDocument:"after"
+                    }
+                )
+                res.json({ Success: "Data updated", data: resumeUpdate })
             }
             
         }
     } catch (error) {
+
         res.status(400).json(error)
     }
 })
 
+
+router.delete('/delete-education/:id/:eduId' , async(req,res)=>{
+    try {
+        const id = req.params.id
+        const eduId  = req.params.eduId
+
+        const resumeUpdate = await ResumeProfileDB.findByIdAndUpdate({ _id: id }, {
+            $pull: {
+                education: {_id:eduId}
+            }
+        },{
+            returnDocument:"after"
+        })
+        res.json({Success:"Item Deleted" , data:resumeUpdate})
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 module.exports = router;
