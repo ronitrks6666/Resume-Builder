@@ -282,6 +282,10 @@ ion-icon {
 
 
 /* Slide bar code */
+.slide-menu-right{
+    height: fit-content;
+}
+
 
 .mask {
     display: none;
@@ -295,6 +299,12 @@ ion-icon {
 }
 
 .menu {
+    left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
+  top:0;
+  bottom: 0;
     display: none;
     position: absolute;
     z-index: 1000;
@@ -331,7 +341,7 @@ button.close-menu {
     border: 1px solid grey;
     border-radius: 5px;
     display: block;
-    margin: 40px auto;
+    margin: 40px 0;
     width: 100px;
 }
 

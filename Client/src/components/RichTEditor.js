@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
-
-
+import { StateContext } from "../context/StateProvider.js";
 
 
 
@@ -61,19 +60,21 @@ const config = {
     buttons:["bold" , "italic" , "underline", "link", "unlink", "draft" , ],
 }
 function RichTEditor() {
+  //console.log(preText)
+  const { projectDescription,setprojectDescription } =useContext(StateContext);
   const [value, setvalue] = useState("");
   const editor = useRef(null);
   function editHandle(e) {
-    setvalue(e);
+    setprojectDescription(e);
   }
   return (
       <div>
     <div>
-      <JoditEditor ref={editor} onChange={editHandle} config={config} value={value}
+      <JoditEditor ref={editor} onChange={editHandle} config={config} value={projectDescription ? projectDescription : value}
        />
     </div>
     <div>
-        {value} 
+        {projectDescription} 
     </div>
     </div>
   );

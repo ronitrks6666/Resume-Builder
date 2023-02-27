@@ -25,8 +25,12 @@ const profileResumeSchema = mongoose.Schema({
             endDate: {type:String},
             description: {type:String}
         }],
-        languages: [{type:String}],
-        skill: [{type:String}],
+        languages: [{name:{type:String}}],
+        skill: [{
+            name:{type:String},
+            subName:{type:String},
+            level:{type:String}
+        }],
         experience: [{
             jobTitle: {type:String},
             employer: {type:String},

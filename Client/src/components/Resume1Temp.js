@@ -61,9 +61,9 @@ export default function Resume1Temp({ resume }) {
                     <h2>PROGRAMMING LANG.</h2>
                 </div>
                 <ul>
-                    {resume.skill.map((data) => {
+                    {resume.languages.map((data) => {
                         return (
-                            <li>{data}</li>
+                            <li>{data.name}</li>
                         )
                     })}
                 </ul>
@@ -72,35 +72,18 @@ export default function Resume1Temp({ resume }) {
                 <div class="heading">
                     <h2>SKILLS</h2>
                 </div>
-                <table>
-                    <tr>
-                        <td>
-                            <li>Data Structures</li>
-                        </td>
-                        <td>
-                            <li>Competitive Prog.</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Android Studio</li>
-                        </td>
-                        <td>
-                            <li>Visual Studio</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Adobe Photoshop</li>
-                        </td>
-                        <td>
-                            <li>Adobe Illustrator</li>
-                        </td>
-                    </tr>
-                </table>
+                <div className="skillTable">
+                    <div className="col">
+                    {resume.skill.map((data) => {
+                            return (
+                                <li>{data.name}</li>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
             <div class="project" id="project">
-                <div class="heading">
+                <div class="heading"> 
                     <h2>Professional Experience</h2>
                 </div>
 
@@ -136,16 +119,20 @@ export default function Resume1Temp({ resume }) {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse itaque inventore error iste maxime minus accusantium praesentium. Corporis, delectus et!
             </p>
         </div> */}
+        {resume.project.map((data) => {
+                    return (
                 <div class="data">
                     <p style={{ display: "flex" }}>
-                        <b>WallMart</b> - A Wallpaper App
+                        <b>{data.title}</b> - {data.subTitle}
                         <span style={{ marginLeft: "auto", marginRight: "50px" }}>10/2021-11/2021</span>
                     </p>
 
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse itaque inventore error iste maxime minus accusantium praesentium. Corporis, delectus et!
+                        {data.description}
                     </p>
                 </div>
+                    )}
+                )}
 
             </div>
             <div class="hobby">
